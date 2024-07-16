@@ -25,28 +25,46 @@
 推移的関数従属は、正規化の第三正規形（3NF）で解消すべき問題です。具体的には、属性Aが属性Bを関数従属させ、属性Bが属性Cを関数従属させる場合、属性Aが属性Cを間接的に関数従属させることを意味します。
 
 例として以下のようなテーブルを考えます。
-| 学生ID(A) | 学科(B)       | 学科主任(C)   |
-|--------|------------|------------|
-| 1      | コンピュータ | 田中先生   |
-| 2      | 物理       | 鈴木先生   |
-| 3      | 数学       | 佐藤先生   |
+```mermaid
+erDiagram
+    Student {
+        int studentID
+        string department
+        string headOfDepartment
+    }
+    Student {
+        1 "Computer Science" "Mr. Tanaka"
+        2 "Physics" "Mr. Suzuki"
+        3 "Mathematics" "Mr. Sato"
+    }
+```
 
 このテーブルにおいて、以下の関数従属が成り立つ場合があります。
 - 学生ID(A)→学科(B)
 - 学科(B)→学科主任(C)
 
 したがって、学生ID → 学科主任という推移的関数従属が成り立ちます。これを解消するためには、テーブルを分割します。
-| 学生ID(A) | 学科(B)       |
-|--------|------------|
-| 1      | コンピュータ |
-| 2      | 物理       |
-| 3      | 数学       |
-
-| 学科(B)       | 学科主任(C)   |
-|------------|------------|
-| コンピュータ | 田中先生   |
-| 物理       | 鈴木先生   |
-| 数学       | 佐藤先生   |
+```mermaid
+erDiagram
+    Student {
+        int studentID
+        string department
+    }
+    Department {
+        string department
+        string headOfDepartment
+    }
+    Student {
+        1 "Computer Science"
+        2 "Physics"
+        3 "Mathematics"
+    }
+    Department {
+        "Computer Science" "Mr. Tanaka"
+        "Physics" "Mr. Suzuki"
+        "Mathematics" "Mr. Sato"
+    }
+```
 
 このようにして、推移的関数従属を解消することでデータベースの正規化が達成されます。
 
@@ -82,6 +100,7 @@ erDiagram
         3 "Suzuki Ichiro" "Mathematics" "A"
         3 "Suzuki Ichiro" "English" "B"
     }
+```
 
 ### 第二正規形（2NF）
 **要件**
