@@ -54,22 +54,13 @@
 >データベースの正規化は、データの重複を最小限に抑え、データの一貫性と整合性を維持するためのデータベース設計手法です。これにより、データの更新や検索が効率的になり、データの整合性が保たれます。
 
 ```mermaid
-erDiagram
-    Student {
-        int studentID
-        string studentName
-    }
-    Course {
-        int courseID
-        string courseName
-    }
-    Grade {
-        int studentID
-        int courseID
-        string grade
-    }
-    Student ||--o{ Grade : has
-    Course ||--o{ Grade : has
+table
+  title 学生の成績
+  | 学生ID | 学生名  | コース      | 成績 |
+  |--------|---------|--------------|--------------|
+  | 1      | 山田太郎| 数学, 物理   | A, B         |
+  | 2      | 佐藤花子| 英語         | B            |
+  | 3      | 鈴木一郎| 数学, 英語 | A, B         |
 ```
 
 このテーブルには冗長性と不整合のリスクがあります。これを第一正規形（1NF）から第三正規形（3NF）まで正規化していきます。
