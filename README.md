@@ -97,6 +97,8 @@ erDiagram
         string grade
     }
     Student ||--o{ Grade: "has"
+```
+
 ### 第三正規形（3NF）
 **要件**
 - 2NFに従っていること。
