@@ -87,17 +87,17 @@
 
 ```mermaid
 erDiagram
-    Student {
-        int studentID
-        string studentName
+    学生 {
+        int 学生ID
+        string 学生名
     }
-    Grade {
-        int studentID
-        string course
-        string grade
+    成績 {
+        int 学生ID
+        string コース
+        string 成績
     }
-    Student ||--o{ Grade: "has"
-
+    学生 ||--o{ 成績: "has"
+```
 ### 第三正規形（3NF）
 **要件**
 - 2NFに従っていること。
