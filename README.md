@@ -67,13 +67,21 @@
 
 原子的であるとは、各セルに一つの値だけが入っている状態を指します。つまり、セルの中に複数の値やリストのようなものが入っていないことを意味します。
 
-| 学生ID | 学生名  | コース      | 成績 |
-|--------|---------|-------------|------|
-| 1      | 山田太郎| 数学        | A    |
-| 1      | 山田太郎| 物理        | B    |
-| 2      | 佐藤花子| 英語        | B    |
-| 3      | 鈴木一郎| 数学        | A    |
-| 3      | 鈴木一郎| 英語        | B    |
+```mermaid
+erDiagram
+    StudentGrade {
+        int studentID
+        string studentName
+        string course
+        string grade
+    }
+    StudentGrade {
+        1 "山田太郎" "Mathematics" "A"
+        1 "山田太郎" "Physics" "B"
+        2 "佐藤花子" "English" "B"
+        3 "鈴木一郎" "Mathematics" "A"
+        3 "鈴木一郎" "English" "B"
+    }
 
 ### 第二正規形（2NF）
 **要件**
