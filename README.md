@@ -55,21 +55,22 @@
 
 ```mermaid
 erDiagram
-    学生 {
-        int 学生ID
-        string 学生名
+    Student {
+        int studentID
+        string studentName
     }
-    コース {
-        int コースID
-        string コース名
+    Course {
+        int courseID
+        string courseName
     }
-    成績 {
-        int 学生ID
-        int コースID
-        string 成績
+    Grade {
+        int studentID
+        int courseID
+        string grade
     }
-    学生 ||--o{ 成績 : has
-    コース ||--o{ 成績 : has
+    Student ||--o{ Grade : has
+    Course ||--o{ Grade : has
+```
 
 このテーブルには冗長性と不整合のリスクがあります。これを第一正規形（1NF）から第三正規形（3NF）まで正規化していきます。
 
