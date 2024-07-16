@@ -76,11 +76,11 @@ erDiagram
         string grade
     }
     StudentGrade {
-        1 "山田太郎" "Mathematics" "A"
-        1 "山田太郎" "Physics" "B"
-        2 "佐藤花子" "English" "B"
-        3 "鈴木一郎" "Mathematics" "A"
-        3 "鈴木一郎" "English" "B"
+        1 "Yamada Taro" "Mathematics" "A"
+        1 "Yamada Taro" "Physics" "B"
+        2 "Sato Hanako" "English" "B"
+        3 "Suzuki Ichiro" "Mathematics" "A"
+        3 "Suzuki Ichiro" "English" "B"
     }
 
 ### 第二正規形（2NF）
@@ -115,28 +115,21 @@ erDiagram
 ここで、次の推移的関数従属が存在することに注意します:
 - コースに関する情報が他のテーブルに依存している場合、それを分離します。
 
-学生テーブル:
-| 学生ID | 学生名  |
-|--------|---------|
-| 1      | 山田太郎|
-| 2      | 佐藤花子|
-| 3      | 鈴木一郎|
-
-成績テーブル:
-| 学生ID | コースID | 成績 |
-|--------|----------|------|
-| 1      | 1        | A    |
-| 1      | 2        | B    |
-| 2      | 3        | B    |
-| 2      | 4        | A    |
-| 3      | 1        | A    |
-| 3      | 3        | B    |
-
-コーステーブル:
-| コースID | コース名     |
-|----------|--------------|
-| 1        | 数学         |
-| 2        | 物理         |
-| 3        | 英語         |
-| 4        | コンピュータ |
-
+```mermaid
+erDiagram
+    Student {
+        int studentID
+        string studentName
+    }
+    Grade {
+        int studentID
+        int courseID
+        string grade
+    }
+    Course {
+        int courseID
+        string courseName
+    }
+    Student ||--o{ Grade: "has"
+    Course ||--o{ Grade: "includes"
+```
